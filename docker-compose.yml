@@ -13,7 +13,7 @@ services:
       API_ENDPOINT: "http://api:5000/api/"
   api:
     build:
-      context: ./api
+      context: ./Api
       dockerfile: Dockerfile.api
     ports:
       - "5000:5000"
