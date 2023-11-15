@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./www 
+      dockerfile: Dockerfile.web
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    environment:
+      API_ENDPOINT: "http://api:5000/api/"
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.api
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
